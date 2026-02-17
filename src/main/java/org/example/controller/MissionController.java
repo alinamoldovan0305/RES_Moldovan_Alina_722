@@ -39,5 +39,10 @@ public class MissionController {
         service.filterSpacecraftStatus(spacecraft)
                 .forEach(System.out::println);
 
+        /* Task 3 */
+        System.out.println("---- SORTED ASTRONAUTS ----");
+        List<Astronaut> sorted = service.getSortedAstronauts();
+        sorted.forEach(System.out::println);
+
     }
 }

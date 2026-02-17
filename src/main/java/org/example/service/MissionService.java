@@ -46,5 +46,13 @@ public class MissionService {
                 .filter(t -> t.getStatus()==Status.ACTIVE )
                 .toList();
     }
+    /* Task 3 */
+    public List<Astronaut> getSortedAstronauts() throws Exception {
+        return astronautRepo.findAll().stream()
+                .sorted(Comparator
+                        .comparingInt(Astronaut::getExperienceLevel).reversed()
+                        .thenComparing(Astronaut::getName))
+                .toList();
+    }
 
 }
