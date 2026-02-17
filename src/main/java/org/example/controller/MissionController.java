@@ -34,13 +34,13 @@ public class MissionController {
 
 
         /* Task 2 */
-        System.out.print("Input spacecraft: ");
+        System.out.print("\nInput spacecraft: ");
         String spacecraft = scanner.nextLine();
         service.filterSpacecraftStatus(spacecraft)
                 .forEach(System.out::println);
 
         /* Task 3 */
-        System.out.println("---- SORTED ASTRONAUTS ----");
+        System.out.println("\n---- SORTED ASTRONAUTS ----");
         List<Astronaut> sorted = service.getSortedAstronauts();
         sorted.forEach(System.out::println);
 
@@ -59,7 +59,33 @@ public class MissionController {
                                                 " -> computed=" + e.computedPoints()
                                 )
                         );
+        /* Task 6 */
+        System.out.println("\nTop 5 Astronauts:");
 
+        List<Map.Entry<Astronaut, Integer>> ranking =
+                service.getTop5AstronautsWithScores();
+
+        int position = 1;
+        for (Map.Entry<Astronaut, Integer> entry : ranking) {
+
+            Astronaut a = entry.getKey();
+            Integer score = entry.getValue();
+
+            System.out.println(
+                    position++ + ". " +
+                            a.getName() +
+                            " ("
+                            +a.getSpacecraft()+ ") -> " +
+                            score
+            );
+
+        }
+        if (!ranking.isEmpty()) {
+            System.out.println(
+                    "\nLeading Spacecraft: " +
+                            ranking.get(0).getKey().getSpacecraft()
+            );
+        }
         /* Task 7 */
         Files.write(
                 Path.of("mission_report.txt"),

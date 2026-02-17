@@ -65,7 +65,43 @@ public class MissionService {
                 .limit(limit)
                 .toList();
     }
+    /* Task 6 */
+    public List<Map.Entry<Astronaut, Integer>> getTop5AstronautsWithScores()
+            throws Exception {
 
+        // 1. Points from missions
+        Map<Integer, Integer> missionPoints =
+                eventRepo.findAll().stream()
+                        .collect(Collectors.groupingBy(
+                                Event::getAstronautId,
+                                Collectors.summingInt(Event::computedPoints)
+                        ));
+
+        // 2. value supplies
+        Map<Integer, Integer> suppliesValue =
+                supplyRepo.findAll().stream()
+                        .collect(Collectors.groupingBy(
+                                Supply::getAstronautId,
+                                Collectors.summingInt(Supply::getValue)
+                        ));
+
+        // 3. Build ranking and sort
+        return astronautRepo.findAll().stream()
+                .map(d -> {
+                    int missionpoints = missionPoints.getOrDefault(d.getId(), 0);
+                    int supplypoints = suppliesValue.getOrDefault(d.getId(), 0);
+                    int total = missionpoints + supplypoints;
+                    return Map.entry(d, total);
+                })
+                .sorted(
+                        Comparator
+                                .comparing(Map.Entry<Astronaut, Integer>::getValue)
+                                .reversed()
+                                .thenComparing(e -> e.getKey().getName())
+                )
+                .limit(5)
+                .toList();
+    }
     /* Task 7 */
     public Map<EventType, Long> countEventsByType() throws Exception {
         return eventRepo.findAll().stream()
@@ -74,7 +110,9 @@ public class MissionService {
                         Collectors.counting()
                 ))
                 .entrySet().stream()
-                .sorted(Map.Entry.<EventType, Long>comparingByValue().reversed())
+                .sorted(Map.Entry.<EventType, Long>comparingByValue().reversed()
+
+                )
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         Map.Entry::getValue,
