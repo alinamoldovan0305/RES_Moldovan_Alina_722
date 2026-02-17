@@ -44,5 +44,11 @@ public class MissionController {
         List<Astronaut> sorted = service.getSortedAstronauts();
         sorted.forEach(System.out::println);
 
+        /* Task 4 */
+        Files.write(
+                Path.of("astronauts_sorted.txt"),
+                sorted.stream().map(Astronaut::toString).toList()
+        );
+
     }
 }
