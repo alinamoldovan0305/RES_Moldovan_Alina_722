@@ -33,5 +33,11 @@ public class MissionController {
         astronauts.forEach(System.out::println);
 
 
+        /* Task 2 */
+        System.out.print("Input spacecraft: ");
+        String spacecraft = scanner.nextLine();
+        service.filterSpacecraftStatus(spacecraft)
+                .forEach(System.out::println);
+
     }
 }
