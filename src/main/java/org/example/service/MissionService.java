@@ -111,7 +111,7 @@ public class MissionService {
                 ))
                 .entrySet().stream()
                 .sorted(Map.Entry.<EventType, Long>comparingByValue().reversed()
-
+                        .thenComparing(Map.Entry.comparingByKey())
                 )
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
