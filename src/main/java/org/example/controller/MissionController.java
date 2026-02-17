@@ -59,5 +59,13 @@ public class MissionController {
                                                 " -> computed=" + e.computedPoints()
                                 )
                         );
+
+        /* Task 7 */
+        Files.write(
+                Path.of("mission_report.txt"),
+                service.countEventsByType().entrySet().stream()
+                        .map(e -> e.getKey() + " -> " + e.getValue())
+                        .toList()
+        );
     }
 }

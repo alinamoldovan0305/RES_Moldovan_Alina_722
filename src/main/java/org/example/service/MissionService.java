@@ -65,4 +65,21 @@ public class MissionService {
                 .limit(limit)
                 .toList();
     }
+
+    /* Task 7 */
+    public Map<EventType, Long> countEventsByType() throws Exception {
+        return eventRepo.findAll().stream()
+                .collect(Collectors.groupingBy(
+                        Event::getType,
+                        Collectors.counting()
+                ))
+                .entrySet().stream()
+                .sorted(Map.Entry.<EventType, Long>comparingByValue().reversed())
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (a, b) -> a,
+                        LinkedHashMap::new
+                ));
+    }
 }
