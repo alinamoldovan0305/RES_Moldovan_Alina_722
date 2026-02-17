@@ -47,7 +47,7 @@ public class MissionController {
         /* Task 4 */
         Files.write(
                 Path.of("astronauts_sorted.txt"),
-                sorted.stream().map(Astronaut::toString).toList()
+                sorted.stream().map(Astronaut::toString).toList().reversed()
         );
 
     }
