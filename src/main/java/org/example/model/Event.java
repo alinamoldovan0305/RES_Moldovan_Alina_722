@@ -17,7 +17,7 @@ public class Event {
     public int getAstronautId(){return astronautId;}
     public int getDay(){return day;}
 
-    public EventType getEventType() {
+    public EventType getType() {
         return type;
     }
 

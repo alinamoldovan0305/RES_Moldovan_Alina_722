@@ -22,6 +22,6 @@ public class Astronaut {
     @Override
     public String toString() {
 //        [#id] name | spacecraft | status | exp=<experienceLevel>
-        return "["+id+"]"+ " | "+ spacecraft+" | "+ status+" | exp="+experienceLevel+"\n";
+        return "[#"+id+"]"+ " | "+ spacecraft+" | "+ status+" | exp="+experienceLevel;
     }
 }

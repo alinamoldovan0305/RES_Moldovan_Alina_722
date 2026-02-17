@@ -14,7 +14,7 @@ public class Supply {
 
     public int getId(){return id;}
     public int getAstronautId(){return astronautId;}
-    public SupplyType getSupplyType() {
+    public SupplyType getType() {
         return type;
     }
     public int getValue(){return value;}
