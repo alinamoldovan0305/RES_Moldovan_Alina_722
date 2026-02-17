@@ -50,5 +50,14 @@ public class MissionController {
                 sorted.stream().map(Astronaut::toString).toList().reversed()
         );
 
+        /* Task 5 */
+                service.getFirstEvents(5)
+                        .forEach(e ->
+                                System.out.println(
+                                        "Event " + e.getId() +
+                                                " -> raw=" + e.getBasePoints() +
+                                                " -> computed=" + e.computedPoints()
+                                )
+                        );
     }
 }

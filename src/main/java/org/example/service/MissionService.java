@@ -39,13 +39,15 @@ public class MissionService {
     public List<Supply> getAllSupplies() throws Exception {
         return supplyRepo.findAll();
     }
+
     /* Task 2 */
     public List<Astronaut> filterSpacecraftStatus(String spacecraft) throws Exception {
         return astronautRepo.findAll().stream()
                 .filter(t -> Objects.equals(t.getSpacecraft(), spacecraft))
-                .filter(t -> t.getStatus()==Status.ACTIVE )
+                .filter(t -> t.getStatus() == Status.ACTIVE)
                 .toList();
     }
+
     /* Task 3 */
     public List<Astronaut> getSortedAstronauts() throws Exception {
         return astronautRepo.findAll().stream()
@@ -55,4 +57,12 @@ public class MissionService {
                 .toList();
     }
 
+
+    /*Task5*/
+    public List<Event> getFirstEvents(int limit) throws Exception {
+        return eventRepo.findAll()
+                .stream()
+                .limit(limit)
+                .toList();
+    }
 }

@@ -23,4 +23,15 @@ public class Event {
 
     public int getBasePoints(){return basePoints;}
 
+    public int computedPoints() {
+        return switch (type) {
+            case  EVA-> basePoints +2*day;
+            case SYSTEM_FAILURE -> basePoints -3 -day;
+            case SCIENCE -> basePoints + (day% 4);
+            case MEDICAL -> basePoints - 2 * (day % 3);
+            case COMMUNICATION -> basePoints +5;
+
+        };
+    };
+
 }
